@@ -1,0 +1,27 @@
+
+<div xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <div class="container">
+        <h1>Најава</h1>
+        <hr>
+        <div th:if="${hasError}">
+            <div th:text="${error}" class="text-danger"></div>
+        </div>
+        <hr>
+
+        <form action="/login" method="post">
+            <label for="username"><b>Корисничко име</b></label>
+            <input type="text" placeholder="Enter username" name="username" id="username" required>
+
+            <label for="password"><b>Лозинка</b></label>
+            <input type="password" placeholder="Enter password" name="password" id="password" required>
+
+            <button type="submit" class="loginbtn">Најавете се</button>
+        </form>
+
+    </div>
+    <hr>
+
+    <div class="container signin">
+        <p>Не сте корисник? <a href="/register">Регистрирајте се тука</a>.</p>
+    </div>
+</div>

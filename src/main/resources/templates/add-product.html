@@ -1,0 +1,58 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <form action="/products/add" method="POST">
+                    <div class="form-group">
+                        <label for="name">Име на производ</label>
+                        <input type="text"
+                               class="form-control"
+                               id="name"
+                               name="name"
+                               required
+                               placeholder="Име">
+                    </div>
+                    <div class="form-group">
+                        <label for="tip">Тип на производ</label>
+                        <input type="text"
+                               class="form-control"
+                               id="tip"
+                               name="tip"
+                               placeholder="Тип">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Цена</label>
+                        <input type="number"
+                               class="form-control"
+                               id="price"
+                               name="price"
+                               placeholder="Цена">
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Количина:</label>
+                        <input type="number"
+                               class="form-control"
+                               id="quantity"
+                               name="quantity"
+                               placeholder="Количина"
+                               min="1">
+                    </div>
+                   <div class="form-group">
+                        <label>Магацин</label>
+                        <select name="warehouse" class="form-control">
+                            <option selected="selected">Одбери магацин</option>
+                            <option th:each="war : ${warehouses}"
+                                    th:value="${war.getIdMagacin()}"
+                                    th:text="${war.getImeMagacin()}">
+                            </option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Потврди</button>
+                    <a class="btn btn-danger" href="javascript:history.back()">Претходна страна</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</th:block>
+

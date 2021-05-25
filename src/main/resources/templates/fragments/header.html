@@ -1,0 +1,50 @@
+<script src="../fontawesome/css/all.min.css"></script>
+<link rel="stylesheet" href="../fontawesome/css/fontawesome.min.css" type="text/css">
+<link rel="stylesheet" href="../fontawesome/css/svg-with-js.css" type="text/css">
+
+<div xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+                aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#"></a>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/home">Почетна страна <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/products">Производи</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/warehouses">Магацини</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/stores">Продавници</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/orders">Нарачки</a>
+                </li>
+            </ul>
+<!--            <form class="form-inline my-2 my-lg-0">-->
+<!--                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+<!--                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+<!--            </form>-->
+            <ul class="navbar-nav navbar-right">
+                <li><a sec:authorize="!isAuthenticated()" class="nav-link" href="/register">Регистрација</a></li>
+                <li><a sec:authorize="!isAuthenticated()" class="nav-link" href="/login"> Најави се</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <th:block th:if="${#request.getRemoteUser()!=null}"
+                                  th:text="${#request.getRemoteUser()}">
+                        </th:block>
+                    </a>
+                </li>
+                <li><a sec:authorize="isAuthenticated()" class="nav-link" href="/logout"> Одјави се</a></li>
+            </ul>
+        </div>
+    </nav>
+
+</div>

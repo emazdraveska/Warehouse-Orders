@@ -1,0 +1,23 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <form action="/orders/add" method="POST">
+                    <div class="form-group">
+                        <label>Продавница</label>
+                        <select name="idProdavnica" class="form-control">
+                            <option selected="selected">Одбери продавница</option>
+                            <option
+                                    th:each="pr : ${prodavnici}"
+                                    th:value="${pr.getIdProdavnica()}"
+                                    th:text="${pr.getImeProdavnica()}">
+                            </option>
+                        </select>
+                        <button type="submit" class="btn btn-primary">Започни нарачка</button>
+                        <a class="btn btn-danger" href="javascript:history.back()">Претходна страна</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</th:block>

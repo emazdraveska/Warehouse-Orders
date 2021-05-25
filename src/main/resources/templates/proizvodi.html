@@ -1,0 +1,51 @@
+<div xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <div class="container">
+        <div class="row">
+            <div class="col-12" th:if="${proizvodi.size() > 0}">
+                <div class="table-responsive">
+                    <h3>Листа на сите производи</h3>
+                    <div class="col-sm-12 col-md-12">
+                        <th:block sec:authorize="hasRole('ROLE_WAREHOUSE')">
+                        <form method="GET" action="/products/add">
+                            <button type="submit" class="btn btn-block btn-dark add-product-btn">
+                                Нов производ во магацин
+                            </button>
+                        </form>
+                        </th:block>
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">Име на производ</th>
+                            <th scope="col">Тип на производ</th>
+                            <th scope="col">Цена</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr th:each="pr : ${proizvodi}">
+                            <td th:text="${pr.getImeProizvod()}"></td>
+                            <td th:text="${pr.getTipProizvod()}"></td>
+                            <td th:each="p,i : ${cena}"
+                                th:if="${p.getIdProizvod} == ${pr.getIdProizvod} and
+                                        ${p.getVazhiDo}==null"
+                                th:text="${p.getVrednost()}">
+                            </td>
+                            </td>
+
+
+                            <td class="text-right" height="3">
+                                <a th:href="@{'/products/edit/{id}' (id=${pr.getIdProizvod()})}"
+                                   class="btn btn-sm btn-info edit-product"
+                                   sec:authorize="hasRole('ROLE_ADMIN')">
+                                    <i class="fa fa-trash">Промени</i>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

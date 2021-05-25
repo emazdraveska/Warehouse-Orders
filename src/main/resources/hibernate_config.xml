@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="connection.url">jdbc:postgresql://localhost:5432/magacin</property>
+    <property name="connection.driver_class">org.postgresql.Driver</property>
+    <mapping class="mk.ukim.finki.bazi.model.CenaEntity"/>
+      <mapping class="mk.ukim.finki.bazi.model.HibernateSequencesEntity"/>
+    <mapping class="mk.ukim.finki.bazi.model.KorisnikEntity"/>
+    <mapping class="mk.ukim.finki.bazi.model.MagacinEntity"/>
+    <mapping class="mk.ukim.finki.bazi.model.NarachkaEntity"/>
+    <mapping class="mk.ukim.finki.bazi.model.NarachkaNaEntity"/>
+    <mapping class="mk.ukim.finki.bazi.model.ProdavnicaMaloprodazhbaEntity"/>
+    <mapping class="mk.ukim.finki.bazi.model.ProizvodEntity"/>
+    <mapping class="mk.ukim.finki.bazi.model.SeNaogjaVoEntity"/>
+    <mapping class="mk.ukim.finki.bazi.model.SiteMagaciniEntity"/>
+    <mapping class="mk.ukim.finki.bazi.model.SiteNarachkiEntity"/>
+    <mapping class="mk.ukim.finki.bazi.model.SiteProdavniciEntity"/>
+    <mapping class="mk.ukim.finki.bazi.model.SiteProizvodiEntity"/>
+    <!-- <property name="connection.username"/> -->
+    <!-- <property name="connection.password"/> -->
+
+    <!-- DB schema will be updated if needed -->
+    <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+  </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,46 @@
+<div class="container mb-4" xmlns:th="http://www.thymeleaf.org">
+    <div class="row">
+        <div th:if="${hasError}">
+            <h5 class="text-center text-danger" th:text="${error}"></h5>
+        </div>
+        <div class="col-12" th:if="${proizvodi.size() > 0}">
+            <div class="table-responsive">
+
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Име на производ</th>
+                        <th scope="col">Тип на производ</th>
+                        <th scope="col">Цена</th>
+                        <th scope="col">Магацин</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="pr : ${proizvodi}">
+                        <td th:text="${pr.getImeProizvod()}"></td>
+                        <td th:text="${pr.getTipProizvod()}"></td>
+                        <td th:text="${pr.getVrednost()}"></td>
+                        <td th:text="${pr.getImeMagacin()}"></td>
+                        <td class="text-right">
+                            <form th:action="@{'/orders/add-order/{id}' (id=${pr.getId()})}"
+                                  th:method="POST"
+                                  sec:authorize="isAuthenticated()">
+                                <label for="quantity">Внеси количина</label>
+                                <input type="number"
+                                       class="form-control"
+                                       id="quantity"
+                                       name="quantity"
+                                       placeholder="Количина"
+                                       min="1">
+                                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-trash">Додади во
+                                    нарачка</i></button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <a class="btn btn-primary" href="/orders">Крај на нарачка</a>
+        </div>
+    </div>
+</div>

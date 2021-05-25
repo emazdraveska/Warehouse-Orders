@@ -1,0 +1,48 @@
+<div xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <h3>Листа од сите продавници</h3>
+                    <div class="col mb-3">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                                <form method="GET" action="/stores/add">
+                                    <button type="submit" class="btn btn-block btn-dark add-product-btn">
+                                        Додади нова продавница
+                                    </button>
+                                </form>
+                                </th:block>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">Име на продавница</th>
+                            <th scope="col">Тип</th>
+                            <th scope="col">Адреса</th>
+                            <!--                            <th scope="col">Производи и магацини од кои се набавени</th>-->
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr th:each="pr : ${prodavnici}">
+                            <td th:text="${pr.getImeProdavnica()}"></td>
+                            <td th:text="${pr.getTipProdavnica()}"></td>
+                            <td th:text="${pr.getAdresaProdavnica()}"></td>
+                            <td class="text-right">
+                                <a th:href="@{'/orders/{id}' (id=${pr.getIdProdavnica()})}"
+                                   class="btn btn-sm btn-info edit-product">
+                                    <i class="fa fa-trash">Нарачки од оваа продавница</i>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

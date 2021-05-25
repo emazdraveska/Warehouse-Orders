@@ -1,0 +1,37 @@
+<div xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <div class="container">
+        <h1>Регистрација</h1>
+        <hr>
+        <div th:if="${hasError}">
+            <div th:text="${error}" class="text-danger"></div>
+        </div>
+        <hr>
+        <form action="/register" method="post">
+            <label for="username"><b>Корисничко име</b></label>
+            <input type="text" placeholder="Enter username" name="username" id="username" required>
+
+            <label for="password"><b>Лозинка</b></label>
+            <input type="password" placeholder="Enter password" name="password" id="password" required>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="role" type="radio" id="ADMIN" value="ROLE_ADMIN">
+                <label class="form-check-label" for="ADMIN">ADMIN</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="role" type="radio" id="WAREHOUSE" value="ROLE_WAREHOUSE">
+                <label class="form-check-label" for="WAREHOUSE">Вработен во магацин</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="role" type="radio" id="STORE" value="ROLE_STORE">
+                <label class="form-check-label" for="STORE">Вработен во продавница</label>
+            </div>
+            <button type="submit" class="registerbtn">Регистрирајте се!</button>
+        </form>
+        <hr>
+    </div>
+
+    <div class="container signin">
+        <p>Веќе сте корисник? <a href="/login">Најавете се</a>.</p>
+    </div>
+
+</div>

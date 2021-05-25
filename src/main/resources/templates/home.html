@@ -1,0 +1,16 @@
+<div xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <div class="container">
+        <div class="jumbotron">
+            <div class="page-header">
+                <h1>Продавници и магацини!</h1>
+            </div>
+            <p>Апликација за едноставно вршење на нарачка од страна на било која продавница,
+                до било кој магацин.</p>
+        </div>
+        <th:block sec:authorize="hasRole('ROLE_STORE')">
+        <form action="/orders/add" method="get">
+            <button type="submit" class="btn btn-block btn-dark">Направи нарачка!</button>
+        </form>
+        </th:block>
+    </div>
+</div>

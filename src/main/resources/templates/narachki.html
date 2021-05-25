@@ -1,0 +1,122 @@
+
+<div xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <h3>Листа од сите нарачки</h3>
+                    <div class="col mb-3">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <th:block sec:authorize="hasRole('ROLE_STORE')">
+                                <form method="GET" action="/orders/add">
+                                    <button type="submit" class="btn btn-block btn-dark add-product-btn">
+                                        Додади нова нарачка
+                                    </button>
+                                </form>
+                                </th:block>
+                            </div>
+                        </div>
+                    </div>
+                    <div th:if="${prodavnica}!=null">
+                        Нарачки на продавницата:
+                        <th:block th:text="${prodavnica}"/>
+                    </div>
+                    <div>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col" width="14%">ID на нарачка</th>
+                                <th scope="col" width="18%" th:if="${prodavnica}==null">
+                                    Име на продавница
+                                </th>
+                                <th scope="col" width="18%">Име на магацин</th>
+                                <th scope="col" width="25%">Податоци за производ (име, количина и цена за плаќање)</th>
+                                <th scope="col" width="25%">Датум на нарачка
+                                </th>
+                            </tr>
+
+                            </thead>
+                            <tbody th:if="${id} != null">
+                            <tr th:each="nar : ${narachki}"
+                                th:if="${nar.getIdProdavnica()} == ${id}">
+                                <td th:text="${nar.getIdNarachka()}"></td>
+                                <td th:each="m : ${magacini}"
+                                    th:if="${m.getIdMagacin()} == ${nar.getIdMagacin()}"
+                                    th:text="${m.getImeMagacin()}"></td>
+                                <td>
+
+                                        <ul th:each="s : ${site}" class="products">
+                                            <th:block th:if="${s.getIdNarachka()} == ${nar.getIdNarachka()}">
+                                                <li th:text="${s.getImeProizvod()}"></li>
+                                                <li th:text="${s.getKolichina()}"></li>
+                                                <li th:text="${s.getVkupnaCena()}"></li>
+                                            </th:block>
+                                        </ul>
+
+                                </td>
+                                <td th:if="${nar.getIdProdavnica()} == ${id}"
+                                    th:text="${nar.getDatumNarachka()}"></td>
+
+                            </tr>
+                            </tbody>
+                            <tbody th:if="${id} == null">
+                            <tr th:each="nar : ${narachki}">
+                                <td th:text="${nar.getIdNarachka()}"></td>
+                                <td th:each="p : ${prodavnici}"
+                                    th:if="${p.getIdProdavnica()} == ${nar.getIdProdavnica()}"
+                                    th:text="${p.getImeProdavnica()}"></td>
+                                <td th:each="m : ${magacini}"
+                                    th:if="${m.getIdMagacin()} == ${nar.getIdMagacin()}"
+                                    th:text="${m.getImeMagacin()}"></td>
+                                <td>
+
+                                        <ul th:each="s : ${site}" class="products">
+                                            <th:block th:if="${s.getIdNarachka()} == ${nar.getIdNarachka()}">
+                                                <li th:text="${s.getImeProizvod()}"></li>
+                                                <li th:text="${s.getKolichina()}"></li>
+                                                <li th:text="${s.getVkupnaCena()}"></li>
+                                            </th:block>
+                                        </ul>
+
+                                </td>
+                                <td th:text="${nar.getDatumNarachka()}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--<tbody th:if="${id}==null">-->
+<!--<tr th:each="site : ${siteNarachki}">-->
+<!--    <td th:text="${site.getIdNarachka()}"></td>-->
+<!--    <td th:text="${site.getImeProdavnica()}"></td>-->
+<!--    <td th:text="${site.getImeMagacin()}"></td>-->
+<!--    <td th:text="${site.getImeProizvod()}"></td>-->
+<!--    <td th:text="${site.getKolichina()}"></td>-->
+<!--    <td th:text="${site.getVkupnaCena()}"></td>-->
+<!--    <td th:text="${site.getDatumNarachka()}"></td>-->
+
+
+<!--    &lt;!&ndash;                                    <table class="table table-striped">&ndash;&gt;-->
+<!--    &lt;!&ndash;                                        <tbody>&ndash;&gt;-->
+<!--    &lt;!&ndash;                                        <tr th:each="site,s  : ${siteNarachki}"&ndash;&gt;-->
+<!--    &lt;!&ndash;                                            th:if="${site.getIdNarachka()} == ${nar.getIdNarachka()}">&ndash;&gt;-->
+<!--    &lt;!&ndash;                                            <td th:text="${site.getImeProdavnica()}"></td>&ndash;&gt;-->
+<!--    &lt;!&ndash;                                            <td th:text="${site.getImeMagacin()}"></td>&ndash;&gt;-->
+<!--    &lt;!&ndash;                                            <td th:text="${site.getImeProizvod()}"></td>&ndash;&gt;-->
+<!--    &lt;!&ndash;                                            <td th:text="${site.getKolichina()}"></td>&ndash;&gt;-->
+<!--    &lt;!&ndash;                                            <td th:text="${site.getVkupnaCena()}"></td>&ndash;&gt;-->
+<!--    &lt;!&ndash;                                        </tr>&ndash;&gt;-->
+<!--    &lt;!&ndash;                                        </tbody>&ndash;&gt;-->
+<!--    &lt;!&ndash;                                    </table>&ndash;&gt;-->
+<!--    &lt;!&ndash;                                </td>&ndash;&gt;-->
+<!--</tr>-->
+
+<!--</tbody>-->
