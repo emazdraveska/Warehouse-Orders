@@ -8,11 +8,11 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-12">
                                 <th:block sec:authorize="hasRole('ROLE_ADMIN')">
-                                <form method="GET" action="/warehouses/add">
-                                    <button type="submit" class="btn btn-block btn-dark add-product-btn">
-                                        Нов магацин
-                                    </button>
-                                </form>
+                                    <form method="GET" action="/warehouses/add">
+                                        <button type="submit" class="btn btn-block btn-dark add-product-btn">
+                                            Нов магацин
+                                        </button>
+                                    </form>
                                 </th:block>
                             </div>
                         </div>
@@ -34,14 +34,16 @@
                         <!--                            <td th:text="${warehouse.getImeProizvod()}" ></td>-->
                         <!--                            <th th:text="${warehouse.getKolichina()}"></td>-->
                         <td>
-                                <ul th:each="m,mm : ${mags}" class="products">
-                                    <th:block th:if="${m.getIdMagacin()} == ${mag.getIdMagacin()}">
-                                        <li th:text="${m.getImeProizvod()}"></li>
-                                        <li th:text="${m.getKolichina()}"></li>
-                                    </th:block>
-                                </ul>
+                            <ul th:each="m,mm : ${mags}" class="products">
+                                <th:block th:if="${m.getIdMagacin()} == ${mag.getIdMagacin()}">
+                                    <li th:text="${m.getImeProizvod()}"></li>
+                                    <li th:text="${m.getKolichina()}"></li>
+
+                                </th:block>
+                            </ul>
 
                         </td>
+
                     </tr>
                     </tbody>
                 </table>
@@ -50,5 +52,3 @@
     </div>
 </div>
 </div>
-
-
